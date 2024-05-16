@@ -1,3 +1,4 @@
+import 'package:diet/screens/cal_calculator.dart';
 import 'package:diet/screens/detect_age_model.dart';
 import 'package:diet/screens/footCounter.dart';
 import 'package:diet/screens/scan_page.dart';
@@ -44,16 +45,60 @@ class InfoPage extends StatelessWidget {
                   ),
                 ]),
            
-            GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ScanPage()));
-              },
+            Expanded(
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ScanPage()));
+                },
+                child: Container(
+                  width: 310,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(21),
+                    color: const Color.fromARGB(255, 255, 109, 170),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 95,
+                          width: 95,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Image.asset(
+                              'assets/img/people_11433145.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                         Text(
+                          'Age ${detectAgeModel?.data.result ?? ""} ',
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+           SizedBox(height: 15),
+            Expanded(
               child: Container(
-                height: 150,
                 width: 310,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(21),
-                  color: const Color.fromARGB(255, 255, 109, 170),
+                  color: const Color.fromARGB(211, 28, 119, 194),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -70,7 +115,7 @@ class InfoPage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Image.asset(
-                            'assets/img/people_11433145.png',
+                            'assets/img/feet_9718538.png',
                             fit: BoxFit.contain,
                           ),
                         ),
@@ -78,99 +123,63 @@ class InfoPage extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                       Text(
-                        'Age ${detectAgeModel?.data.result ?? ""} ',
-                        style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      )
+                      const FootCounter(),                    
                     ],
                   ),
                 ),
               ),
             ),
-           
-            Container(
-              height: 150,
-              width: 310,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(21),
-                color: const Color.fromARGB(211, 28, 119, 194),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 95,
-                      width: 95,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Image.asset(
-                          'assets/img/feet_9718538.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const FootCounter(),                    
-                  ],
-                ),
-              ),
-            ),
-           
-            GestureDetector(
-              onTap: () => GoRouter.of(context).push('/DietPage'),
-              child: Container(
-                height: 150,
-                width: 310,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(21),
-                  color: const Color.fromARGB(220, 235, 111, 9),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 95,
-                        width: 95,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Image.asset(
-                            'assets/img/diet_7924064.png',
-                            fit: BoxFit.contain,
+                      SizedBox(height: 15),
+
+            Expanded(
+              child: GestureDetector(
+                onTap: () => GoRouter.of(context).push('/DietPage'),
+                child: Container(
+                  width: 310,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(21),
+                    color: const Color.fromARGB(220, 235, 111, 9),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 95,
+                          width: 95,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Image.asset(
+                              'assets/img/diet_7924064.png',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'Your Diet',
-                        style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      )
-                    ],
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text(
+                          'Your Diet',
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            )
+            ),           SizedBox(height: 15),
+
+                      Expanded(
+                        child: CalCalculator()
+                      )
           ],
         ),
       ),
