@@ -81,7 +81,7 @@ class InfoPage extends StatelessWidget {
                        Text(
                         'Age ${detectAgeModel?.data.result ?? ""} ',
                         style: TextStyle(
-                            fontSize: 28,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       )

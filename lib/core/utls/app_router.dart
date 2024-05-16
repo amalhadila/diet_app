@@ -7,8 +7,8 @@ abstract class AppRouter {
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
      
-            GoRoute(path: '/mm', builder: (context, state)=>  ScanPage()),
-            GoRoute(path: '/', builder: (context, state)=>  InfoPage()),
+            GoRoute(path: '/', builder: (context, state)=>  ScanPage()),
+            GoRoute(path: '/InfoPage', builder: (context, state)=>  InfoPage()),
                         GoRoute(path: '/DietPage', builder: (context, state)=>  DietPage()),
 
                                
