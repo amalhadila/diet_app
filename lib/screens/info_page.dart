@@ -1,5 +1,7 @@
 import 'package:diet/screens/detect_age_model.dart';
 import 'package:diet/screens/footCounter.dart';
+import 'package:diet/screens/scan_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -42,44 +44,49 @@ class InfoPage extends StatelessWidget {
                   ),
                 ]),
            
-            Container(
-              height: 150,
-              width: 310,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(21),
-                color: const Color.fromARGB(255, 255, 109, 170),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 95,
-                      width: 95,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Image.asset(
-                          'assets/img/people_11433145.png',
-                          fit: BoxFit.contain,
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ScanPage()));
+              },
+              child: Container(
+                height: 150,
+                width: 310,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(21),
+                  color: const Color.fromARGB(255, 255, 109, 170),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 95,
+                        width: 95,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Image.asset(
+                            'assets/img/people_11433145.png',
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                     Text(
-                      'Age ${detectAgeModel?.data.result}',
-                      style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    )
-                  ],
+                      const SizedBox(
+                        width: 10,
+                      ),
+                       Text(
+                        'Age ${detectAgeModel?.data.result ?? ""} ',
+                        style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
