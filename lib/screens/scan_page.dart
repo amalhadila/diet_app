@@ -1,6 +1,12 @@
+import 'package:diet/screens/info_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:dio/dio.dart';
+
+import 'detect_age_model.dart';
 
 enum ImageUploadSource { gallery, camera }
 
@@ -12,9 +18,10 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
+  final Dio _dio = Dio();
   XFile? image;
   @override
-  Future uploadimg({required ImageUploadSource source}) async {
+  Future uploadImg({required ImageUploadSource source}) async {
     final ImagePicker picker = ImagePicker();
     var pickedimage = await picker.pickImage(
         source: source == ImageUploadSource.camera
@@ -24,8 +31,40 @@ class _ScanPageState extends State<ScanPage> {
     if (pickedimage != null) {
       setState(() {
         image = XFile(pickedimage.path);
+        uploadImageToServer(); 
       });
-    } else {}
+    } else {
+      
+    }
+  }
+   Future<void> uploadImageToServer() async {
+    try {
+      var formData = FormData.fromMap({
+        'photo': await MultipartFile.fromFile(image!.path,
+            filename: "photo", contentType: MediaType('image', 'jpeg')),
+      });
+      var response = await _dio.post(
+        options: Options(
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+        ),
+        'https://age-aware-advisor.onrender.com/api/estimate',
+        data: formData,
+      );
+      DetectAgeModel detectAgeModel =
+          DetectAgeModel.fromJson(response.data);
+          Navigator.of(context).push(CupertinoPageRoute(builder: (context) => InfoPage(detectAgeModel: detectAgeModel),));
+
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Operation Failed"),
+          content: Text("An error happened $e, please try again"),
+        ),
+      );
+    }
   }
 
   Widget build(BuildContext context) {
@@ -90,7 +129,7 @@ class _ScanPageState extends State<ScanPage> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          uploadimg(source: ImageUploadSource.gallery);
+                          uploadImg(source: ImageUploadSource.gallery);
                         },
                         icon: const Icon(
                           Icons.image_outlined,
@@ -99,7 +138,7 @@ class _ScanPageState extends State<ScanPage> {
                         )),
                     IconButton(
                         onPressed: () {
-                          uploadimg(source: ImageUploadSource.camera);
+                          uploadImg(source: ImageUploadSource.camera);
                         },
                         icon: const Icon(
                           Icons.camera_alt_outlined,

@@ -1,9 +1,11 @@
+import 'package:diet/screens/detect_age_model.dart';
 import 'package:diet/screens/footCounter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class InfoPage extends StatelessWidget {
-  const InfoPage({super.key});
+  final DetectAgeModel? detectAgeModel;
+  const InfoPage({super.key, this.detectAgeModel});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +72,8 @@ class InfoPage extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Text(
-                      'Age',
+                     Text(
+                      'Age ${detectAgeModel?.data.result}',
                       style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
