@@ -108,6 +108,7 @@ class _FootCounterState extends State<FootCounter> {
      burnedcalories=(steps*.07);
     return burnedcalories ;
   }
+  
   Future<void> savePresteps(int steps) async {
        await checkAndResetValues();
 

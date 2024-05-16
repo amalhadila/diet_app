@@ -1,8 +1,6 @@
 import 'package:diet/screens/diet_page.dart';
-import 'package:diet/screens/footCounter.dart';
 import 'package:diet/screens/info_page.dart';
 import 'package:diet/screens/scan_page.dart';
-import 'package:diet/screens/step_counter.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
