@@ -1,3 +1,4 @@
+import 'package:diet/screens/cal_calculator.dart';
 import 'package:diet/screens/diet_page.dart';
 import 'package:diet/screens/info_page.dart';
 import 'package:diet/screens/scan_page.dart';

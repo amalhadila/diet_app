@@ -14,7 +14,7 @@ class InfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.only(bottom:28),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -25,7 +25,7 @@ class InfoPage extends StatelessWidget {
                   Container(
                     alignment: Alignment.topRight,
                     height: 200,
-                    width: 350,
+                    width: 310,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(360),
@@ -37,7 +37,7 @@ class InfoPage extends StatelessWidget {
                         '         Face\n Age Estimator',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 28,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -50,7 +50,6 @@ class InfoPage extends StatelessWidget {
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ScanPage()));
               },
               child: Container(
-                height: 150,
                 width: 310,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(21),
@@ -81,8 +80,8 @@ class InfoPage extends StatelessWidget {
                       ),
                        Text(
                         'Age ${detectAgeModel?.data.result ?? ""} ',
-                        style: TextStyle(
-                            fontSize: 28,
+                        style: const TextStyle(
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       )
@@ -91,9 +90,17 @@ class InfoPage extends StatelessWidget {
                 ),
               ),
             ),
+             GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context) => CalCalculator()));
+              },
+              
+                child: CalCalculator(),
+         
+              
+            ),
            
             Container(
-              height: 150,
               width: 310,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(21),
@@ -131,7 +138,6 @@ class InfoPage extends StatelessWidget {
             GestureDetector(
               onTap: () => GoRouter.of(context).push('/DietPage'),
               child: Container(
-                height: 150,
                 width: 310,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(21),

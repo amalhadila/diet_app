@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:diet/screens/cal_model.dart';
-import 'package:diet/screens/scan_page.dart';
+import 'package:diet/screens/info_page.dart';
+import 'package:diet/screens/info_page.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
@@ -74,7 +76,7 @@ class _CalCalculatorState extends State<CalCalculator> {
           ),
         ),
       );
-          // Navigator.of(context).push(CupertinoPageRoute(builder: (context) => InfoPage(detectAgeModel: detectAgeModel),));
+      //    Navigator.of(context).push(CupertinoPageRoute(builder: (context) => InfoPage(detectAgeModel: detectAgeModel),));
 
     } catch (e) {
       showDialog(
@@ -122,7 +124,7 @@ class _CalCalculatorState extends State<CalCalculator> {
               const Text(
                 'Calorie Counter',
                 style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               )
