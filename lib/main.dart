@@ -2,6 +2,8 @@ import 'package:diet/core/utls/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'screens/scan_page.dart';
+
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
@@ -13,9 +15,10 @@ class DietApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter.router,
+      home: ScanPage(),
+      // routerConfig: AppRouter.router,
       title: 'diet',
       theme: ThemeData.light(),
     );

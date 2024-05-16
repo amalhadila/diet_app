@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:diet/screens/info_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class _ScanPageState extends State<ScanPage> {
   XFile? image;
   @override
   Future uploadImg({required ImageUploadSource source}) async {
+    log("selecting image started");
     final ImagePicker picker = ImagePicker();
     var pickedimage = await picker.pickImage(
         source: source == ImageUploadSource.camera
@@ -29,15 +32,27 @@ class _ScanPageState extends State<ScanPage> {
             : ImageSource.gallery);
 
     if (pickedimage != null) {
+          log("selected image ");
+
       setState(() {
         image = XFile(pickedimage.path);
         uploadImageToServer(); 
       });
     } else {
-      
+                log(" image ins NULL");
+
+            showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Operation Failed"),
+          content: Text("Failed to upload image, please try again"),
+        ),
+      );
     }
   }
    Future<void> uploadImageToServer() async {
+              log("starting uploading image to server");
+
     try {
       var formData = FormData.fromMap({
         'photo': await MultipartFile.fromFile(image!.path,
@@ -52,11 +67,15 @@ class _ScanPageState extends State<ScanPage> {
         'https://age-aware-advisor.onrender.com/api/estimate',
         data: formData,
       );
+                    log(" uploaded image to server");
+
       DetectAgeModel detectAgeModel =
           DetectAgeModel.fromJson(response.data);
           Navigator.of(context).push(CupertinoPageRoute(builder: (context) => InfoPage(detectAgeModel: detectAgeModel),));
 
     } catch (e) {
+                    log("failed to upload image to server");
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(

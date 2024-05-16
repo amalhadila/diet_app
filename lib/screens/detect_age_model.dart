@@ -1,13 +1,3 @@
-// To parse this JSON data, do
-//
-//     final detectAgeModel = detectAgeModelFromJson(jsonString);
-
-import 'dart:convert';
-
-DetectAgeModel detectAgeModelFromJson(String str) => DetectAgeModel.fromJson(json.decode(str));
-
-String detectAgeModelToJson(DetectAgeModel data) => json.encode(data.toJson());
-
 class DetectAgeModel {
     String status;
     Data data;
