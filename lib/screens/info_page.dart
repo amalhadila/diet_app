@@ -1,3 +1,4 @@
+import 'package:diet/screens/cal_calculator.dart';
 import 'package:diet/screens/detect_age_model.dart';
 import 'package:diet/screens/footCounter.dart';
 import 'package:diet/screens/scan_page.dart';
@@ -81,7 +82,7 @@ class InfoPage extends StatelessWidget {
                        Text(
                         'Age ${detectAgeModel?.data.result ?? ""} ',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 28,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       )
