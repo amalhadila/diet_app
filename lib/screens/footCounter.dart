@@ -23,12 +23,16 @@ class _FootCounterState extends State<FootCounter> {
   final storage = GetStorage();
 
   @override
-  void initState() {
+   void initState() {
     super.initState();
-    ReturnPreviousDistance().then((_) {
-    ReturnPrevioussteps();}).then((_) {
-      startListening(); 
-    });
+    initializeData();
+  }
+
+  Future<void> initializeData() async {
+    await ReturnPreviousDistance();
+    await ReturnPrevioussteps();
+    calcburnedcalories(steps);
+    startListening();
   }
 
   @override
@@ -106,6 +110,8 @@ class _FootCounterState extends State<FootCounter> {
 
   double calcburnedcalories(int steps) {
      burnedcalories=(steps*.07);
+    burnedcalories = (burnedcalories * 100).roundToDouble() / 100;
+
     return burnedcalories ;
   }
   
